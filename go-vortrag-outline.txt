@@ -1,0 +1,33 @@
+Motivation
+ - Designziele
+ - Eigenschaften
+ - Designer
+ - Popularität und populäre Software die auf Go basiert
+
+Einführung in die Sprache
+ - Variablendeklarationen und Basisdatentypen, Pointer
+ - Flow Control-Konstrukte
+ - Funktionen
+ - Höhere Datentypen: arrays, slices, structs und maps, structs
+ - Objektorientierte Programmierung: structs, Methoden
+ - Implizite Interfaces als Mittel der Entkopplung
+
+Concurrency and Parallelism
+ - Unterscheidung zwischen "concurrency" and "parallelism"
+ - goroutines and channels
+ - Beispielcode
+ - Wie mache ich: one-to-many, many-to-one?
+
+Web App Development
+ - 
+
+Code-Organisation
+ - Packages und Exporte, convention over configuration
+ - go get als package manager
+
+Unit Testing und Benchmarking
+ - 
+
+Was echt cool ist
+
+Was echt blöd ist
