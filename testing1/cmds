@@ -1,0 +1,16 @@
+Unit Testing
+- Run tests:               go test
+
+Code Coverage
+- Install cover tool:      go get golang.org/x/tools/cmd/cover
+- Run coverate test:       go test -cover
+- Generate outfile:        go test -coverprofile=coverage.out
+- Function breakdown:      go tool cover -func=coverage.out
+- HTML view:               go tool cover -html=coverage.out
+- Counting mode (outfile): go test -covermode=count -coverprofile=count.out
+- Print counting results:  go tool cover -func=count.out
+- HTML counting view:      go tool cover -html=count.out
+
+Benchmarking
+- Run benchmark:           go test -bench .
+- Print mem stats:         go test -bench . -benchmem

@@ -1,7 +1,7 @@
 package main
 
 import "fmt"
-import "github.com/danbim/go-talk/packages/vertex" // <- package path, name "vertex"
+import "github.com/danbim/go-talk/packages1/vertex" // <- package path, name "vertex"
 
 // import v "github.com/danbim/go-talk/packages/vertex" // rename "vertex" in file-local scope
 
