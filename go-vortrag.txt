@@ -170,6 +170,9 @@ Interessante Artikel
 Talks
  - Google I/O 2013 - Fireside Chat with the Go Team: https://www.youtube.com/watch?v=p9VUCp98ay4
 
+Performance
+ - https://www.datadoghq.com/2014/04/go-performance-tales/
+
 Version History
  - 12/2014: Release 1.4
    - Android Support (for "early adopters")
