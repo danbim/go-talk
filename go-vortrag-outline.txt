@@ -1,0 +1,52 @@
+Motivation
+ - Designziele
+   - Einfachheit: komplette Sprachdefinition https://golang.org/ref/spec (46 Seiten, inklusive Grammatik, vollständiger Erklärung und Beispielen)
+ - Eigenschaften
+ - Designer
+ - Popularität und populäre Software die auf Go basiert
+
+Einführung in die Sprache
+ - Variablendeklarationen und Basisdatentypen, Pointer
+ - Flow Control-Konstrukte
+ - Funktionen (call-by-value vs. call-by-reference)
+ - Höhere Datentypen: arrays, slices, structs und maps, structs
+ - Objektorientierte Programmierung: structs, Methoden
+ - Implizite Interfaces als Mittel der Entkopplung
+
+Concurrency and Parallelism
+ - Unterscheidung zwischen "concurrency" and "parallelism"
+ - goroutines and channels
+ - Beispielcode
+ - Wie mache ich: one-to-many, many-to-one?
+ - Kritik: lack of race condition safety (http://en.wikipedia.org/wiki/Go_%28programming_language%29) da shared memory zwischen goroutinen problemlos möglich, wenn:
+   - "globale" variablen bzw. variablen im scope mehrerer goroutinen verwendet werden oder
+   - variablen im closure an die goroutine übergeben werden oder
+   - pointer beim starten einer goroutine übergeben werden oder
+   - pointer über channels übergeben werden
+
+
+Functional Programming?
+
+Code-Organisation
+ - Packages und Exporte, convention over configuration
+ - go get als package manager
+
+Web App Development
+ - Minimal-Beispiel(e)
+
+Unit Testing und Benchmarking
+ - http://talks.golang.org/2014/testing.slide#4
+
+Was echt cool ist
+
+Was echt blöd ist
+
+Go version history
+ - Release
+ - Datum
+ - Wesentliche Neuerungen
+
+Ausblick / mögliche Themen für die Zukunft
+ - Patterns für concurrency
+ - Populäre Go-Bibliotheken und packages
+ - Editoren (z.B.\ vim-plugins)

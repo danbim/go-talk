@@ -1,0 +1,200 @@
+
+Designers
+ - Robert Griesemer (http://en.wikipedia.org/wiki/Robert_Griesemer) (V8, HotSpot, ...)
+ - Rob Pike (http://en.wikipedia.org/wiki/Rob_Pike) (First window system for Unix 1981, UTF-8)
+ - Ken Thompson (http://en.wikipedia.org/wiki/Ken_Thompson) (Unix)
+
+Popularity
+ - https://www.google.com/trends/explore#q=golang
+ - http://githut.info/
+
+Properties
+ - statically-typed
+ - garbage-collected
+ - type-safe
+ - variable length arrays ("slices")
+ - key-value maps
+ - supports type inference
+ - pointers
+
+Walkthrough
+ - Variable declarations
+   - Declaration vs. Assignment (:= vs. =)
+   - Package and function scope variables https://tour.golang.org/basics/8
+   - (Short) Initialization and type inference https://tour.golang.org/basics/10
+   - Types https://tour.golang.org/basics/11
+   - Type conversion https://tour.golang.org/basics/13
+   - Constants (values) https://tour.golang.org/basics/15
+ - Flow control
+   - for without () but with {} https://tour.golang.org/flowcontrol/1
+   - for = while, forever https://tour.golang.org/flowcontrol/3
+   - if without () but with {}
+   - switch with optional(!) break https://tour.golang.org/flowcontrol/10, https://golang.org/doc/effective_go.html#switch
+   - defer (stacks) https://tour.golang.org/flowcontrol/12, how you close a file or mutex
+   - panic
+   - recover
+ - Functions
+   - Parameters and return values https://tour.golang.org/basics/4
+   - Parameters syntactic sugar https://tour.golang.org/basics/5
+   - Multiple return values https://tour.golang.org/basics/6
+   - Named return values https://tour.golang.org/basics/7
+   - Functional programming
+     - functions as values https://tour.golang.org/moretypes/20
+     - closures https://tour.golang.org/moretypes/21
+ - Custom Types
+   - structs
+     - declaration and instantiation https://tour.golang.org/moretypes/2
+     - member dereferencing (no difference for ref vs. pointer) https://tour.golang.org/moretypes/3, https://tour.golang.org/moretypes/4
+   - arrays & slices
+     - Arrays with fixed length, length checks https://tour.golang.org/moretypes/6
+     - Slices, re-slicing https://tour.golang.org/moretypes/8
+     - Slice creation https://tour.golang.org/moretypes/9
+     - Slice dynamic reallocation with append() https://tour.golang.org/moretypes/11
+     - for iteration over slice range https://tour.golang.org/moretypes/12
+   - Pointers
+     - wie bei C(++) https://tour.golang.org/flowcontrol/13
+   - maps
+     - Declaration & creation with make https://tour.golang.org/moretypes/15, https://tour.golang.org/moretypes/16, https://tour.golang.org/moretypes/17
+     - Delete and existence check https://tour.golang.org/moretypes/18
+   - "classes" or methods on structs
+     - "Receivers" (not just on classes but on any types, also "later on") https://youtu.be/4iAiS-qv26Q
+     - Simple example https://tour.golang.org/methods/1
+     - Extend existing types in my package https://tour.golang.org/methods/2
+     - Pass-by-reference vs. Pass-by value https://tour.golang.org/methods/3
+   - interfaces (!)
+     - implicit (!), no implements keyword https://tour.golang.org/methods/5, https://www.youtube.com/watch?v=4iAiS-qv26Q
+     - Stringer as most important implicit interface https://tour.golang.org/methods/6
+   - Errors https://tour.golang.org/methods/8
+ - Packages
+   - Exports für Großgeschriebenes (DoSth but not doSth)
+   - Imports
+   - Files are just scopes for your import statements
+   - "Within a package, code can refer to any identifier (name) defined within, while clients of the package may only reference the package's exported types, functions, constants, and variables."
+   - A Go package has both a name and a path:
+     import (
+      "fmt"                       // package fmt
+      "os/exec"                   // package exec
+      e "bla/exec"                  
+      "golang.org/x/net/context"  // package context
+     )
+ - Readers und Writers und Streams
+
+Concurrency: goroutines & channels
+ - https://youtu.be/4iAiS-qv26Q?t=19m28s
+ - Demo, Evaluation vs. execution https://tour.golang.org/concurrency/1
+ - Send blocks until somebody is ready to receive
+ - Receive blocks until somebody sends
+ - Parallel sum https://www.youtube.com/watch?v=4iAiS-qv26Q
+ - Deadlocks https://youtu.be/4iAiS-qv26Q?t=26m40s
+ - (Buffered) Channels https://tour.golang.org/concurrency/2, https://tour.golang.org/concurrency/3
+ - One-to-One, One-to-Many, Many-to-One
+ - Closing channels close(ch); v, ok := <-ch
+ - Select: mux / demux https://youtu.be/4iAiS-qv26Q?t=29m20s, e.g. timeouts waiting for answers
+ - select ch <- x: wait until x has been sent, https://youtu.be/4iAiS-qv26Q?t=30m3s
+ - Google search example: https://youtu.be/4iAiS-qv26Q?t=30m8s
+ - Most APIs blocking, because it's so easy to wrap around concurrency using (buffered) channels and selects and ... https://youtu.be/4iAiS-qv26Q?t=39m50s
+ - Goroutines kill callbacks
+ - send channels over channels
+
+Patterns
+ - Concurrency
+   - https://blog.golang.org/pipelines
+   - https://blog.golang.org/context
+ - Alles mögliche
+   - http://www.golangpatterns.info/
+
+Unit Testing und Benchmarking
+ - Unit Testing Grundgerüst
+   - http://talks.golang.org/2014/testing.slide#4
+   - http://golang.org/pkg/testing/
+   - Dateinamen _test.go, gleiches Package wie das getestete File
+   - func TestXxx(*testing.T)
+   - t.Error, t.Fail, t.Fatal for indicating faults
+   - Ausführung: go test
+   - if t.Short() {...} für go test -test.short
+ - Test coverage
+   - Coverage (https://blog.golang.org/cover)
+   - Install cover tool:      go get golang.org/x/tools/cmd/cover
+   - Run coverate test:       go test -cover
+   - Generate outfile:        go test -coverprofile=coverage.out
+   - Function breakdown:      go tool cover -func=coverage.out
+   - HTML view:               go tool cover -html=coverage.out
+   - Counting mode (outfile): go test -covermode=count -coverprofile=count.out
+   - Print counting results:  go tool cover -func=count.out
+   - HTML counting view:      go tool cover -html=count.out
+ - Benchmarking
+   - func BenchmarkXxx(*testing.B) in conjuction with
+   - Ausführung: go test -bench .
+   - tests werden b.N mal ausgeführt, N wird automatisch vom Tool angepasst bis zuverlässige Messungen erfolgt sind.
+   - go test -bench . -benchmem
+
+Cooles
+ - Compilation speed -> no time to wander off in thoughts, waiting for compilation to finish
+ - Native compiles, self-containing binaries -> no runtime installation required
+ - Compiler-Fehler für alles
+   - Unused imports
+   - Var declared, not used
+   - Package import cycles not allowed (allows fast compilation)
+ - Standard directory layout
+   - everything in $GOPATH
+   - "go install" in "myproject" installs to $GOPATH/bin/myproject
+   - main.main() -> $GOPATH/bin/myproject
+ - Built-in package manager
+ - Web-Server
+ - Tooling:
+   - gofmt, automatisches Formatieren von Code
+   - godoc, analog zu JavaDoc,
+   - gofix, automates the rewriting of code to use new language features or updated libraries (von https://blog.golang.org/cover)
+ - go command: installs, builds, tests, benchmarks Go programs using nothing more than source as build specification (!)
+ - convention over configuration, Beispiel: package names (https://blog.golang.org/package-names)
+   - l := list.New()                      // l is a *list.List
+   - now := time.Now()                    // now is a time.Time
+   - d, err := time.ParseDuration("10s")  // d is a time.Duration
+   - ticker := time.NewTicker(d)          // ticker is a *time.Ticker
+
+Deployment
+ - Go + Docker + Google Compute Engine: https://blog.golang.org/docker
+ - 
+
+What sucks
+ - Error Handling
+ - IDE support (pro/con)
+ - Debugging (cgdb)
+ - Package versioning
+
+Interessante Artikel
+ - http://blog.iron.io/2013/03/how-we-went-from-30-servers-to-2-go.html
+ - http://blog.joshsoftware.com/2014/02/04/does-the-next-decade-belong-to-go/
+ - http://blog.jonathanoliver.com/why-i-love-go/
+
+Talks
+ - Google I/O 2013 - Fireside Chat with the Go Team: https://www.youtube.com/watch?v=p9VUCp98ay4
+
+Version History
+ - 12/2014: Release 1.4
+   - Android Support (for "early adopters")
+   - Backwards-compatible language updates / additions
+   - go generate tool for source code generation during compilation
+   - Performance improvements
+   - Mercurial -> git, Rietveld -> gerrit, Google code -> github
+ - 06/2014: Release 1.3
+   - Support for Native Client (NaCl), DragonFly BSD, Plan 9, and Solaris
+   - Backwards-compatible language updates / additions
+   - Godoc improvements (static code analysis)
+     - highlight compiler errors
+     - identifier/type-based code navigation
+     - pointer analysis
+       - call-graph navigation
+       - intra-package call graph
+     - channel usage (made/sent/received) analysis
+ - 12/2013: Release 1.2
+   - Performance improvements
+   - Backwards-compatible language updates / additions
+   - Test coverage tool
+   - Pre-emptive scheduling of goroutines
+ - 05/2013: Release 1.1
+   - Performance, performance, performance
+   - Backwards-compatible language updates / additions
+   - Language change: int division by zero is a compiler error
+   - Race detector for finding memory synchronization errors
+ - 03/2012: Release 1.0
