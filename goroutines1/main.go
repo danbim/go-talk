@@ -4,9 +4,9 @@ import (
 	"fmt"
 )
 
-func Greeter(inbox chan string, outbox chan string) {
-	name := <-inbox // waits for message to be available (synchronisation point)
-	outbox <- fmt.Sprintf("Hello %v!", name)
+func Greeter(inchan chan string, outchan chan string) {
+	name := <-inchan // waits for message to be available (synchronisation point)
+	outchan <- fmt.Sprintf("Hello %v!", name)
 }
 
 func main() {

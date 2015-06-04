@@ -27,8 +27,12 @@ func main() {
 	var v Stringer
 	v = Vertex{1, 2}
 	// v.X = 3 // does not work, v is of type Stringer
-	fmt.Println(v.String())
+	Print(v)
 
 	v = Line{Vertex{1, 2}, Vertex{3, 4}}
-	fmt.Println(v.String())
+	Print(v)
+}
+
+func Print(s Stringer) {
+	fmt.Println(s.String())
 }
