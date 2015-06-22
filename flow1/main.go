@@ -19,6 +19,7 @@ func main() {
 	switch sum2 { // no breaks necessary
 	case 1024:
 		fmt.Println("case 1024!")
+		fallthrough
 	case 768:
 		fmt.Println("case 768!")
 	default:

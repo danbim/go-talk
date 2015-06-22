@@ -11,7 +11,8 @@ func main() {
 	fmt.Printf("packageVar = %v\n", packageVar)
 	fmt.Printf("uninit = %v\n", uninit)
 
-	i := 5
+	//var i = 5
+	i := uint32(5)
 	fmt.Printf("i[%T] = %v\n", i, i)
 
 	a, b, c := "eins", 2, false

@@ -7,12 +7,15 @@ func g() {
 	panic("Aargh!")
 }
 
+func h() {
+	r := recover()
+	if r != nil {
+		fmt.Printf("Recovered from panic (%v) in f()\n", r)
+	}
+}
+
 func f() {
-	defer func() {
-		if r := recover(); r != nil {
-			fmt.Printf("Recovered from panic (%v) in f()\n", r)
-		}
-	}()
+	defer h()
 	fmt.Println("Entering f(), calling g()")
 	g()
 	fmt.Println("Returned normally from g()")

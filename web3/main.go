@@ -28,7 +28,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		if t, err := template.New(path).Parse(string(file)); err != nil {
 			log.Printf("Error loading template: %v", err)
 		} else {
-			t.Execute(w, Page{path, "Test"})
+			t.Execute(w, Page{path, "<Test>"})
 		}
 	}
 }

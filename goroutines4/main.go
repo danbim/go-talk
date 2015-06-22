@@ -14,14 +14,14 @@ func doQuery(service string, ch chan string) {
 
 func main() {
 
-	for i := 0; i < 10; i++ {
+	for i := 0; i < 20; i++ {
 
 		ch := make(chan string)
 		go doQuery("https://www.softwerkskammer.org/groups/luebeck", ch)
 
 		select {
 		case resp := <-ch:
-			fmt.Printf("Go resp=%v\n", resp)
+			fmt.Printf("Got resp=%v\n", resp)
 		case <-time.After(100 * time.Millisecond):
 			fmt.Printf("Timed out :(\n")
 		}

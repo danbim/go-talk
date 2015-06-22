@@ -14,6 +14,7 @@ func (f MyFloat) Abs() float64 {
 }
 
 func main() {
-	f := MyFloat(-13.0)
-	fmt.Println(f.Abs())
+	var f MyFloat
+	f = MyFloat(-13.0)
+	fmt.Println(f)
 }
